@@ -14,9 +14,20 @@ class NavigationEntity extends HiveObject {
   String apiUrl;
 
   NavigationEntity({
-    required this.apiUrl,
     required this.naviId,
     required this.title,
     required this.subtitle,
+    required this.apiUrl,
   });
+
+  @override
+  String toString() {
+    Map<String, String> toJson = {
+      'naviId': naviId,
+      'title': title,
+      'subtitle': subtitle,
+      'apiUrl': apiUrl
+    };
+    return toJson.toString();
+  }
 }

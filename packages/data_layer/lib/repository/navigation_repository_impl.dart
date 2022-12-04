@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:data_layer/data_source/local_storage/navigation/navigation_dao.dart';
 import 'package:data_layer/data_source/remote_storage/rest_client.dart';
 import 'package:data_layer/mapper/navigation_mapper.dart';
@@ -17,7 +15,6 @@ class NavigationRepositoryImpl implements NavigationRepository {
   @override
   Future<Result<List<Navigation>>> getNavigation({bool refresh = false}) async {
     final localStorage = await _dao.getNavigationList();
-    log('[test] $localStorage');
 
     //cached된 데이터를 내보내면 되는 경우
     final shouldLoadCache = localStorage.isNotEmpty && !refresh;
@@ -30,14 +27,12 @@ class NavigationRepositoryImpl implements NavigationRepository {
 
     try {
       final response = await _api.getNavigationList();
-
       final navigations = response.map(((e) => e.toNavigation())).toList();
-
-      log('[test] navigations : $navigations');
 
       //캐시 비움
       await _dao.clearNavigationCache();
 
+      //local storage update
       await _dao.updateNavigationList(
         navigations.map((e) => e.toNavigationEntity()).toList(),
       );

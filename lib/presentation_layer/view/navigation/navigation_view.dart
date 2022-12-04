@@ -1,47 +1,45 @@
-import 'dart:developer';
-import 'dart:ui';
-
-import 'package:bloc_pattern_drill/presentation_layer/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:domain_layer/model/navigation/navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../util/color_extension.dart';
 
 class NavigationView extends StatelessWidget {
-  const NavigationView({super.key});
+  const NavigationView(
+      {required this.navigations, required this.tabController, super.key});
+  final TabController tabController;
+  final List<Navigation> navigations;
 
   @override
   Widget build(BuildContext context) {
-    context.read<NavigationBloc>().add(InitNavigation());
-    return Container(
-      height: 100,
-      color: Colors.yellow,
-      width: MediaQuery.of(context).size.width,
-      child: BlocBuilder<NavigationBloc, NavigationState>(
-          builder: (context, state) {
-        switch (state.status) {
-          case NavigationStatus.initial:
-            return Row(
-              children: state.navigationList.map((e) {
-                return SizedBox(
-                  height: 30,
-                  child: Text(
-                    e.title,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                );
-              }).toList(),
-            );
-          case NavigationStatus.loading:
-            return const Center(child: CircularProgressIndicator());
-          case NavigationStatus.success:
-            return const Center(child: CircularProgressIndicator());
-          case NavigationStatus.fail:
-            return const Center(child: CircularProgressIndicator());
-        }
-      }),
+    return TabBar(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      labelPadding: const EdgeInsets.all(0),
+      labelColor: '#5f0180'.toColor(),
+      indicatorColor: '#5f0180'.toColor(),
+      unselectedLabelColor: '#606060'.toColor(),
+      indicatorWeight: 3,
+      controller: tabController,
+      indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
+      labelStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: '#606060'.toColor(),
+        letterSpacing: -0.48,
+      ),
+      tabs: navigations.map((e) => NavigationTab(title: e.title)).toList(),
+    );
+  }
+}
+
+class NavigationTab extends StatelessWidget {
+  const NavigationTab({required this.title, super.key});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tab(
+      height: 36,
+      text: title,
     );
   }
 }

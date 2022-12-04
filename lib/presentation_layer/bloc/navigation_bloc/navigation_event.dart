@@ -4,4 +4,4 @@ abstract class NavigationEvent {
   const NavigationEvent();
 }
 
-class InitNavigation extends NavigationEvent {}
+class LoadNavigation extends NavigationEvent {}

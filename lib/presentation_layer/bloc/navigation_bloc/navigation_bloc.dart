@@ -11,19 +11,30 @@ part 'navigation_state.dart';
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   final NavigationRepository _repository;
   NavigationBloc(this._repository) : super(const NavigationState()) {
-    on<InitNavigation>(_initNavigation);
+    on<LoadNavigation>(_initNavigation);
+  }
+
+  int _navigationLength = -1;
+
+  int getNavigationLength() {
+    if (_navigationLength == -1) {
+      return 0;
+    } else {
+      return _navigationLength;
+    }
   }
 
   Future<void> _initNavigation(
-      InitNavigation event, Emitter<NavigationState> emit) async {
+      LoadNavigation event, Emitter<NavigationState> emit) async {
     try {
       final result = await _repository.getNavigation(refresh: true);
 
       log('[test] bloc : $result');
       result.when(
         success: (data) {
+          _navigationLength = data.length;
           emit(state.copyWith(
-            status: NavigationStatus.initial,
+            status: NavigationStatus.success,
             navigationList: data,
           ));
         },

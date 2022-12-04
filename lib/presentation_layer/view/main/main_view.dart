@@ -1,49 +1,96 @@
-import 'package:bloc_pattern_drill/presentation_layer/view/navigation/navigation_page.dart';
+import 'dart:developer';
+
+import 'package:bloc_pattern_drill/util/color_extension.dart';
+import 'package:domain_layer/model/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/bottom_navi_bloc/bottom_navi_bloc.dart';
+import '../navigation/navigation_tabbar.dart';
 
-class MainView extends StatelessWidget {
-  const MainView({super.key});
+class MainView extends StatefulWidget {
+  const MainView(this.navigations, {super.key});
+  final List<Navigation> navigations;
+
+  @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> with TickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(
+      length: widget.navigations.length,
+      vsync: this,
+    );
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _tabController = TabController(
+      length: widget.navigations.length,
+      // length: 5,
+      vsync: this,
+    );
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text(
-          'Bloc drill',
-          style: textTheme.headline3,
-        ),
-      ),
-      body: const NavigationPage(),
-      bottomNavigationBar: BlocBuilder<BottomNaviBloc, int>(
-        builder: (context, state) {
-          return BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            type: BottomNavigationBarType.fixed,
-            iconSize: 36,
-            selectedItemColor: Colors.purple.shade900,
-            unselectedItemColor: Colors.black,
-            currentIndex: state,
-            onTap: (index) => context.read<BottomNaviBloc>().add(
-                  PressBottomNaviIcon(context: context, index: index),
+    return Container(
+      color: '#5f0180'.toColor(),
+      child: SafeArea(
+        bottom: false,
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 79,
+            flexibleSpace: Column(
+              children: [
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width,
+                  color: '#5f0180'.toColor(),
                 ),
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.menu), label: 'category'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search), label: 'search'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: 'person'),
-            ],
-          );
-        },
+                NavigationTabBar(widget.navigations,
+                    tabController: _tabController),
+              ],
+            ),
+          ),
+          body: Container(
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.red,
+          ),
+          bottomNavigationBar: BlocBuilder<BottomNaviBloc, int>(
+            builder: (context, state) {
+              return BottomNavigationBar(
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                type: BottomNavigationBarType.fixed,
+                iconSize: 36,
+                selectedItemColor: Colors.purple.shade900,
+                unselectedItemColor: Colors.black,
+                currentIndex: state,
+                onTap: (index) => context.read<BottomNaviBloc>().add(
+                      PressBottomNaviIcon(context: context, index: index),
+                    ),
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.home), label: 'home'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.menu), label: 'category'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.search), label: 'search'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.person), label: 'person'),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }

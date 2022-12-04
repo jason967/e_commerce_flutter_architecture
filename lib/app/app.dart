@@ -2,7 +2,7 @@ import 'package:bloc_pattern_drill/app/theme/color_schemes.g.dart';
 
 import 'package:flutter/material.dart';
 
-import '../presentation_layer/view/main/main_page.dart';
+import '../presentation_layer/main_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
         useMaterial3: true,
         colorScheme: darkColorScheme,
       ),
-      home: const MainPage(),
+      home: const MainScreen(),
     );
   }
 }
