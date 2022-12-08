@@ -21,14 +21,13 @@ class ViewTypeEntityAdapter extends TypeAdapter<ViewTypeEntity> {
       viewType: fields[2] as String,
       component: fields[3] as String,
       description: fields[4] as String,
-      exposePriority: fields[5] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, ViewTypeEntity obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(1)
       ..write(obj.naviId)
       ..writeByte(2)
@@ -36,9 +35,7 @@ class ViewTypeEntityAdapter extends TypeAdapter<ViewTypeEntity> {
       ..writeByte(3)
       ..write(obj.component)
       ..writeByte(4)
-      ..write(obj.description)
-      ..writeByte(5)
-      ..write(obj.exposePriority);
+      ..write(obj.description);
   }
 
   @override

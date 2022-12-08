@@ -12,15 +12,15 @@ class ViewTypeEntity extends HiveObject {
   String component;
   @HiveField(4)
   String description;
-  @HiveField(5)
-  int exposePriority;
+  // @HiveField(5)
+  // int exposePriority;
 
   ViewTypeEntity({
     required this.naviId,
     required this.viewType,
     required this.component,
     required this.description,
-    required this.exposePriority,
+    // required this.exposePriority,
   });
 
   @override
@@ -30,7 +30,7 @@ class ViewTypeEntity extends HiveObject {
       'viewType': viewType,
       'component': component,
       'description': description,
-      'exposePriority': exposePriority.toString(),
+      // 'exposePriority': exposePriority.toString(),
     };
     return toJson.toString();
   }
