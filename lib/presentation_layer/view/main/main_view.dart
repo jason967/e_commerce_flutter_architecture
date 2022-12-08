@@ -29,16 +29,6 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
   }
 
   @override
-  void didChangeDependencies() {
-    _tabController = TabController(
-      length: widget.navigations.length,
-      // length: 5,
-      vsync: this,
-    );
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       color: '#5f0180'.toColor(),
@@ -46,7 +36,7 @@ class _MainViewState extends State<MainView> with TickerProviderStateMixin {
         bottom: false,
         child: Scaffold(
           appBar: AppBar(
-            toolbarHeight: 79,
+            toolbarHeight: 86,
             flexibleSpace: Column(
               children: [
                 Container(

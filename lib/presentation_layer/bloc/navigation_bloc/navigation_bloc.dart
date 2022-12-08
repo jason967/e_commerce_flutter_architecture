@@ -2,15 +2,20 @@ import 'dart:developer';
 
 import 'package:domain_layer/model/navigation/navigation.dart';
 import 'package:domain_layer/repository/navigation_repository.dart';
-import 'package:equatable/equatable.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'navigation_bloc.freezed.dart';
 
 part 'navigation_event.dart';
 part 'navigation_state.dart';
 
+enum NavigationStatus { initial, loading, success, fail }
+
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   final NavigationRepository _repository;
-  NavigationBloc(this._repository) : super(const NavigationState()) {
+  NavigationBloc(this._repository) : super(NavigationState()) {
     on<LoadNavigation>(_initNavigation);
   }
 

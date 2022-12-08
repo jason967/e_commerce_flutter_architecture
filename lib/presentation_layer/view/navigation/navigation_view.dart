@@ -24,7 +24,6 @@ class NavigationView extends StatelessWidget {
         fontSize: 14,
         fontWeight: FontWeight.bold,
         color: '#606060'.toColor(),
-        letterSpacing: -0.48,
       ),
       tabs: navigations.map((e) => NavigationTab(title: e.title)).toList(),
     );
@@ -38,7 +37,7 @@ class NavigationTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tab(
-      height: 36,
+      height: 43,
       text: title,
     );
   }
