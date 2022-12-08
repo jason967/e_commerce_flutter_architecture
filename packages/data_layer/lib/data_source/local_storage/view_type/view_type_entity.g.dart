@@ -1,41 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'navigation_entity.dart';
+part of 'view_type_entity.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class NavigationEntityAdapter extends TypeAdapter<NavigationEntity> {
+class ViewTypeEntityAdapter extends TypeAdapter<ViewTypeEntity> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  NavigationEntity read(BinaryReader reader) {
+  ViewTypeEntity read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return NavigationEntity(
-      naviId: fields[3] as String,
-      title: fields[1] as String,
-      subtitle: fields[2] as String,
-      apiUrl: fields[4] as String,
+    return ViewTypeEntity(
+      naviId: fields[1] as int,
+      viewType: fields[2] as String,
+      component: fields[3] as String,
+      description: fields[4] as String,
+      exposePriority: fields[5] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, NavigationEntity obj) {
+  void write(BinaryWriter writer, ViewTypeEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(1)
-      ..write(obj.title)
-      ..writeByte(2)
-      ..write(obj.subtitle)
-      ..writeByte(3)
       ..write(obj.naviId)
+      ..writeByte(2)
+      ..write(obj.viewType)
+      ..writeByte(3)
+      ..write(obj.component)
       ..writeByte(4)
-      ..write(obj.apiUrl);
+      ..write(obj.description)
+      ..writeByte(5)
+      ..write(obj.exposePriority);
   }
 
   @override
@@ -44,7 +47,7 @@ class NavigationEntityAdapter extends TypeAdapter<NavigationEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NavigationEntityAdapter &&
+      other is ViewTypeEntityAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
