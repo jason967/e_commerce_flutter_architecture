@@ -10,7 +10,7 @@ class ViewTypeDto with _$ViewTypeDto {
     @JsonKey(name: 'viewType') String? viewType,
     @JsonKey(name: 'component') String? component,
     @JsonKey(name: 'description') String? description,
-    // @JsonKey(name: 'exposePriority') int? exposePriority,
+    @JsonKey(name: 'exposePriority') int? exposePriority,
   }) = _ViewTypeDto;
 
   factory ViewTypeDto.fromJson(Map<String, dynamic> json) =>

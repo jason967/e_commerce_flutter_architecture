@@ -28,6 +28,8 @@ mixin _$ViewTypeDto {
   String? get component => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'exposePriority')
+  int? get exposePriority => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,8 @@ abstract class $ViewTypeDtoCopyWith<$Res> {
       {@JsonKey(name: 'naviId') int? naviId,
       @JsonKey(name: 'viewType') String? viewType,
       @JsonKey(name: 'component') String? component,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'exposePriority') int? exposePriority});
 }
 
 /// @nodoc
@@ -65,6 +68,7 @@ class _$ViewTypeDtoCopyWithImpl<$Res, $Val extends ViewTypeDto>
     Object? viewType = freezed,
     Object? component = freezed,
     Object? description = freezed,
+    Object? exposePriority = freezed,
   }) {
     return _then(_value.copyWith(
       naviId: freezed == naviId
@@ -83,6 +87,10 @@ class _$ViewTypeDtoCopyWithImpl<$Res, $Val extends ViewTypeDto>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      exposePriority: freezed == exposePriority
+          ? _value.exposePriority
+          : exposePriority // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -99,7 +107,8 @@ abstract class _$$_ViewTypeDtoCopyWith<$Res>
       {@JsonKey(name: 'naviId') int? naviId,
       @JsonKey(name: 'viewType') String? viewType,
       @JsonKey(name: 'component') String? component,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'exposePriority') int? exposePriority});
 }
 
 /// @nodoc
@@ -117,6 +126,7 @@ class __$$_ViewTypeDtoCopyWithImpl<$Res>
     Object? viewType = freezed,
     Object? component = freezed,
     Object? description = freezed,
+    Object? exposePriority = freezed,
   }) {
     return _then(_$_ViewTypeDto(
       naviId: freezed == naviId
@@ -135,6 +145,10 @@ class __$$_ViewTypeDtoCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      exposePriority: freezed == exposePriority
+          ? _value.exposePriority
+          : exposePriority // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -146,7 +160,8 @@ class _$_ViewTypeDto implements _ViewTypeDto {
       {@JsonKey(name: 'naviId') this.naviId,
       @JsonKey(name: 'viewType') this.viewType,
       @JsonKey(name: 'component') this.component,
-      @JsonKey(name: 'description') this.description});
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'exposePriority') this.exposePriority});
 
   factory _$_ViewTypeDto.fromJson(Map<String, dynamic> json) =>
       _$$_ViewTypeDtoFromJson(json);
@@ -163,10 +178,13 @@ class _$_ViewTypeDto implements _ViewTypeDto {
   @override
   @JsonKey(name: 'description')
   final String? description;
+  @override
+  @JsonKey(name: 'exposePriority')
+  final int? exposePriority;
 
   @override
   String toString() {
-    return 'ViewTypeDto(naviId: $naviId, viewType: $viewType, component: $component, description: $description)';
+    return 'ViewTypeDto(naviId: $naviId, viewType: $viewType, component: $component, description: $description, exposePriority: $exposePriority)';
   }
 
   @override
@@ -180,13 +198,15 @@ class _$_ViewTypeDto implements _ViewTypeDto {
             (identical(other.component, component) ||
                 other.component == component) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.exposePriority, exposePriority) ||
+                other.exposePriority == exposePriority));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, naviId, viewType, component, description);
+  int get hashCode => Object.hash(
+      runtimeType, naviId, viewType, component, description, exposePriority);
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +227,8 @@ abstract class _ViewTypeDto implements ViewTypeDto {
           {@JsonKey(name: 'naviId') final int? naviId,
           @JsonKey(name: 'viewType') final String? viewType,
           @JsonKey(name: 'component') final String? component,
-          @JsonKey(name: 'description') final String? description}) =
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'exposePriority') final int? exposePriority}) =
       _$_ViewTypeDto;
 
   factory _ViewTypeDto.fromJson(Map<String, dynamic> json) =
@@ -225,6 +246,9 @@ abstract class _ViewTypeDto implements ViewTypeDto {
   @override
   @JsonKey(name: 'description')
   String? get description;
+  @override
+  @JsonKey(name: 'exposePriority')
+  int? get exposePriority;
   @override
   @JsonKey(ignore: true)
   _$$_ViewTypeDtoCopyWith<_$_ViewTypeDto> get copyWith =>

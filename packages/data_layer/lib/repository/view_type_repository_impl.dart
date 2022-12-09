@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:data_layer/data_source/local_storage/view_type/view_type_dao.dart';
 import 'package:domain_layer/model/view_type/view_type.dart';
 import 'package:domain_layer/repository/view_type_repository.dart';
@@ -16,17 +18,19 @@ class ViewTypeRepositoryImpl implements ViewTypeRepository {
   Future<Result<List<ViewType>>> getViewTypeList(
       {required int naviId, required int page, bool refresh = false}) async {
     //TODO local storage 개발 해야됌
+
     try {
-      final response = await _api.getViewTypeList(naviId, page);
+      final response = await _api.getViewTypeList(naviId.toString(), page);
+
       final viewTypes = response.map(((e) => e.toViewType())).toList();
 
       //캐시 비움
-      await _dao.cleatViewTypesCache();
+      // await _dao.cleatViewTypesCache();
 
-      //local storage update
+      /*   //local storage update
       await _dao.updateViewTypeList(
         viewTypes.map((e) => e.toViewTypeEntity()).toList(),
-      );
+      ); */
 
       return Result.success(viewTypes);
     } catch (e) {

@@ -10,7 +10,7 @@ _$_NavigationDto _$$_NavigationDtoFromJson(Map<String, dynamic> json) =>
     _$_NavigationDto(
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
-      naviId: json['naviId'] as String?,
+      naviId: json['naviId'] as int?,
       apiUrl: json['apiUrl'] as String?,
     );
 

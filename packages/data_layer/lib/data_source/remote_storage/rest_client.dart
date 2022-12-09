@@ -7,16 +7,16 @@ part 'rest_client.g.dart';
 
 const baseUrl = 'http://localhost:8080';
 const navigation = '/api/navigation';
-const viewtypes = '/api/viewtypes';
+const viewtype = '/api/viewtype';
 
 @RestApi(baseUrl: baseUrl)
 abstract class RestClient {
   factory RestClient(Dio dio, {String? baseUrl}) = _RestClient;
 
   @GET(navigation)
-  Future<List<NavigationDto>> getNavigationList();
+  Future<List<NavigationDto>> getNavigationList(@Query('type') String naviType);
 
-  @GET('$viewtypes/{path}')
+  @GET('$viewtype/{naviId}')
   Future<List<ViewTypeDto>> getViewTypeList(
-      @Path('naviId') int naviId, @Query('page') int page);
+      @Path('naviId') String naviId, @Query('page') int page);
 }

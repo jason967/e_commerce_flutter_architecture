@@ -25,7 +25,7 @@ mixin _$NavigationDto {
   @JsonKey(name: 'subtitle')
   String? get subtitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'naviId')
-  String? get naviId => throw _privateConstructorUsedError;
+  int? get naviId => throw _privateConstructorUsedError;
   @JsonKey(name: 'apiUrl')
   String? get apiUrl => throw _privateConstructorUsedError;
 
@@ -44,7 +44,7 @@ abstract class $NavigationDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle,
-      @JsonKey(name: 'naviId') String? naviId,
+      @JsonKey(name: 'naviId') int? naviId,
       @JsonKey(name: 'apiUrl') String? apiUrl});
 }
 
@@ -78,7 +78,7 @@ class _$NavigationDtoCopyWithImpl<$Res, $Val extends NavigationDto>
       naviId: freezed == naviId
           ? _value.naviId
           : naviId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       apiUrl: freezed == apiUrl
           ? _value.apiUrl
           : apiUrl // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$_NavigationDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle,
-      @JsonKey(name: 'naviId') String? naviId,
+      @JsonKey(name: 'naviId') int? naviId,
       @JsonKey(name: 'apiUrl') String? apiUrl});
 }
 
@@ -130,7 +130,7 @@ class __$$_NavigationDtoCopyWithImpl<$Res>
       naviId: freezed == naviId
           ? _value.naviId
           : naviId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       apiUrl: freezed == apiUrl
           ? _value.apiUrl
           : apiUrl // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ class _$_NavigationDto implements _NavigationDto {
   final String? subtitle;
   @override
   @JsonKey(name: 'naviId')
-  final String? naviId;
+  final int? naviId;
   @override
   @JsonKey(name: 'apiUrl')
   final String? apiUrl;
@@ -203,7 +203,7 @@ abstract class _NavigationDto implements NavigationDto {
   const factory _NavigationDto(
       {@JsonKey(name: 'title') final String? title,
       @JsonKey(name: 'subtitle') final String? subtitle,
-      @JsonKey(name: 'naviId') final String? naviId,
+      @JsonKey(name: 'naviId') final int? naviId,
       @JsonKey(name: 'apiUrl') final String? apiUrl}) = _$_NavigationDto;
 
   factory _NavigationDto.fromJson(Map<String, dynamic> json) =
@@ -217,7 +217,7 @@ abstract class _NavigationDto implements NavigationDto {
   String? get subtitle;
   @override
   @JsonKey(name: 'naviId')
-  String? get naviId;
+  int? get naviId;
   @override
   @JsonKey(name: 'apiUrl')
   String? get apiUrl;

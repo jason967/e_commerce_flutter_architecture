@@ -31,7 +31,7 @@ extension ToNavigationFromDto on NavigationDto {
       title: title ?? '',
       subtitle: subtitle ?? '',
       apiUrl: apiUrl ?? '',
-      naviId: naviId ?? '',
+      naviId: naviId ?? 100,
     );
   }
 }

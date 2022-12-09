@@ -12,6 +12,7 @@ _$_ViewTypeDto _$$_ViewTypeDtoFromJson(Map<String, dynamic> json) =>
       viewType: json['viewType'] as String?,
       component: json['component'] as String?,
       description: json['description'] as String?,
+      exposePriority: json['exposePriority'] as int?,
     );
 
 Map<String, dynamic> _$$_ViewTypeDtoToJson(_$_ViewTypeDto instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_ViewTypeDtoToJson(_$_ViewTypeDto instance) =>
       'viewType': instance.viewType,
       'component': instance.component,
       'description': instance.description,
+      'exposePriority': instance.exposePriority,
     };

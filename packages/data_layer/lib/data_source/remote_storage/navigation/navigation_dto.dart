@@ -8,7 +8,7 @@ class NavigationDto with _$NavigationDto {
   const factory NavigationDto({
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'subtitle') String? subtitle,
-    @JsonKey(name: 'naviId') String? naviId,
+    @JsonKey(name: 'naviId') int? naviId,
     @JsonKey(name: 'apiUrl') String? apiUrl,
   }) = _NavigationDto;
   factory NavigationDto.fromJson(Map<String, dynamic> json) =>

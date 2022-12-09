@@ -17,7 +17,7 @@ class NavigationEntityAdapter extends TypeAdapter<NavigationEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return NavigationEntity(
-      naviId: fields[3] as String,
+      naviId: fields[3] as int,
       title: fields[1] as String,
       subtitle: fields[2] as String,
       apiUrl: fields[4] as String,

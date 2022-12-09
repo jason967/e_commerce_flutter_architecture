@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:data_layer/data_source/local_storage/navigation/navigation_dao.dart';
 import 'package:data_layer/data_source/remote_storage/rest_client.dart';
 import 'package:data_layer/mapper/navigation_mapper.dart';
@@ -13,7 +15,8 @@ class NavigationRepositoryImpl implements NavigationRepository {
   NavigationRepositoryImpl(this._api, this._dao);
 
   @override
-  Future<Result<List<Navigation>>> getNavigation({bool refresh = false}) async {
+  Future<Result<List<Navigation>>> getNavigation(String naviType,
+      {bool refresh = false}) async {
     final localStorage = await _dao.getNavigationList();
 
     //cached된 데이터를 내보내면 되는 경우
@@ -26,7 +29,8 @@ class NavigationRepositoryImpl implements NavigationRepository {
     }
 
     try {
-      final response = await _api.getNavigationList();
+      final response = await _api.getNavigationList(naviType);
+      log('[navigation] $response');
       final navigations = response.map(((e) => e.toNavigation())).toList();
 
       //캐시 비움
@@ -39,7 +43,7 @@ class NavigationRepositoryImpl implements NavigationRepository {
 
       return Result.success(navigations);
     } catch (e) {
-      return Result.error(Exception('data load fail'));
+      return Result.error(Exception('navigtaion data load fail'));
     }
   }
 }

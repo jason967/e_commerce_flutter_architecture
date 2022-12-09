@@ -9,7 +9,7 @@ class NavigationEntity extends HiveObject {
   @HiveField(2)
   String subtitle;
   @HiveField(3)
-  String naviId;
+  int naviId;
   @HiveField(4)
   String apiUrl;
 
@@ -23,7 +23,7 @@ class NavigationEntity extends HiveObject {
   @override
   String toString() {
     Map<String, String> toJson = {
-      'naviId': naviId,
+      'naviId': naviId.toString(),
       'title': title,
       'subtitle': subtitle,
       'apiUrl': apiUrl

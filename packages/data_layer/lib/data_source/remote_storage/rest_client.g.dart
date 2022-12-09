@@ -21,9 +21,9 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<List<NavigationDto>> getNavigationList() async {
+  Future<List<NavigationDto>> getNavigationList(naviType) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': naviType};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
@@ -46,7 +46,7 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<List<ViewTypeDao>> getViewTypeList(
+  Future<List<ViewTypeDto>> getViewTypeList(
     naviId,
     page,
   ) async {
@@ -55,20 +55,20 @@ class _RestClient implements RestClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<ViewTypeDao>>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<ViewTypeDto>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/api/viewtypes/{path}',
+              '/api/viewtype/${naviId}',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => ViewTypeDao.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => ViewTypeDto.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
