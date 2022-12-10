@@ -33,16 +33,17 @@ class NavigationRepositoryImpl implements NavigationRepository {
       log('[navigation] $response');
       final navigations = response.map(((e) => e.toNavigation())).toList();
 
-      //캐시 비움
+      /*  //캐시 비움
       await _dao.clearNavigationCache();
 
       //local storage update
       await _dao.updateNavigationList(
         navigations.map((e) => e.toNavigationEntity()).toList(),
-      );
+      ); */
 
       return Result.success(navigations);
-    } catch (e) {
+    } catch (error) {
+      log('[repository error] $error');
       return Result.error(Exception('navigtaion data load fail'));
     }
   }
