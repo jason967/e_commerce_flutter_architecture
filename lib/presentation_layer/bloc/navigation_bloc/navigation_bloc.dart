@@ -32,19 +32,21 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   Future<void> _initNavigation(
       LoadNavigation event, Emitter<NavigationState> emit) async {
     try {
-      final result = await _repository.getNavigation(refresh: true);
+      log('[bloc] navi_type : ${state.naviType}');
+      final result =
+          await _repository.getNavigation(state.naviType, refresh: true);
 
-      log('[test] bloc : $result');
+      log('[bloc] bloc : $result');
       result.when(
         success: (data) {
           _navigationLength = data.length;
           emit(state.copyWith(
-            status: NavigationStatus.success,
-            navigationList: data,
-          ));
+              status: NavigationStatus.success,
+              navigationList: data,
+              naviType: event.naviType));
         },
         error: (error) {
-          log('[error] $error');
+          log('[error] --> result$error');
           emit(state.copyWith(status: NavigationStatus.fail));
         },
       );

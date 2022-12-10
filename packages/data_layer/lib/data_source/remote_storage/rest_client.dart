@@ -6,6 +6,7 @@ import 'view_type/view_type_dto.dart';
 part 'rest_client.g.dart';
 
 const baseUrl = 'http://localhost:8080';
+
 const navigation = '/api/navigation';
 const viewtype = '/api/viewtype';
 

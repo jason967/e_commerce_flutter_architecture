@@ -9,7 +9,7 @@ class Navigation with _$Navigation {
     required String title,
     required String subtitle,
     required String apiUrl,
-    required String naviId,
+    required int naviId,
   }) = _Navigation;
   factory Navigation.fromJson(Map<String, dynamic> json) =>
       _$NavigationFromJson(json);

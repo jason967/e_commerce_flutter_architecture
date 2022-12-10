@@ -1,7 +1,7 @@
 import 'package:bloc_pattern_drill/presentation_layer/main_screen_view.dart';
 import 'package:domain_layer/repository/navigation_repository.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -19,8 +19,10 @@ class MainScreen extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => BottomNaviBloc()),
         BlocProvider(
-          create: (_) =>
-              NavigationBloc(navigationRepository)..add(LoadNavigation()),
+          create: (_) => NavigationBloc(navigationRepository)
+            ..add(
+              const LoadNavigation(),
+            ),
         )
       ],
       child: const MainScreenView(),

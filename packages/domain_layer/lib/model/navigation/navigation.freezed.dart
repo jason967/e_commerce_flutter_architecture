@@ -23,7 +23,7 @@ mixin _$Navigation {
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
   String get apiUrl => throw _privateConstructorUsedError;
-  String get naviId => throw _privateConstructorUsedError;
+  int get naviId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $NavigationCopyWith<$Res> {
           Navigation value, $Res Function(Navigation) then) =
       _$NavigationCopyWithImpl<$Res, Navigation>;
   @useResult
-  $Res call({String title, String subtitle, String apiUrl, String naviId});
+  $Res call({String title, String subtitle, String apiUrl, int naviId});
 }
 
 /// @nodoc
@@ -74,7 +74,7 @@ class _$NavigationCopyWithImpl<$Res, $Val extends Navigation>
       naviId: null == naviId
           ? _value.naviId
           : naviId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ) as $Val);
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$_NavigationCopyWith<$Res>
       __$$_NavigationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String subtitle, String apiUrl, String naviId});
+  $Res call({String title, String subtitle, String apiUrl, int naviId});
 }
 
 /// @nodoc
@@ -122,7 +122,7 @@ class __$$_NavigationCopyWithImpl<$Res>
       naviId: null == naviId
           ? _value.naviId
           : naviId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -146,7 +146,7 @@ class _$_Navigation implements _Navigation {
   @override
   final String apiUrl;
   @override
-  final String naviId;
+  final int naviId;
 
   @override
   String toString() {
@@ -188,7 +188,7 @@ abstract class _Navigation implements Navigation {
       {required final String title,
       required final String subtitle,
       required final String apiUrl,
-      required final String naviId}) = _$_Navigation;
+      required final int naviId}) = _$_Navigation;
 
   factory _Navigation.fromJson(Map<String, dynamic> json) =
       _$_Navigation.fromJson;
@@ -200,7 +200,7 @@ abstract class _Navigation implements Navigation {
   @override
   String get apiUrl;
   @override
-  String get naviId;
+  int get naviId;
   @override
   @JsonKey(ignore: true)
   _$$_NavigationCopyWith<_$_Navigation> get copyWith =>

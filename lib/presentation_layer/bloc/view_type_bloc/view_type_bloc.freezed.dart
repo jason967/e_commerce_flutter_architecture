@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ViewTypeState {
-  List<ViewType> get viewtypes => throw _privateConstructorUsedError;
   ViewTypeStatus get status => throw _privateConstructorUsedError;
+  List<ViewType> get viewtypes => throw _privateConstructorUsedError;
+  bool get endOfPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ViewTypeStateCopyWith<ViewTypeState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $ViewTypeStateCopyWith<$Res> {
           ViewTypeState value, $Res Function(ViewTypeState) then) =
       _$ViewTypeStateCopyWithImpl<$Res, ViewTypeState>;
   @useResult
-  $Res call({List<ViewType> viewtypes, ViewTypeStatus status});
+  $Res call({ViewTypeStatus status, List<ViewType> viewtypes, bool endOfPage});
 }
 
 /// @nodoc
@@ -46,18 +47,23 @@ class _$ViewTypeStateCopyWithImpl<$Res, $Val extends ViewTypeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? viewtypes = null,
     Object? status = null,
+    Object? viewtypes = null,
+    Object? endOfPage = null,
   }) {
     return _then(_value.copyWith(
-      viewtypes: null == viewtypes
-          ? _value.viewtypes
-          : viewtypes // ignore: cast_nullable_to_non_nullable
-              as List<ViewType>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ViewTypeStatus,
+      viewtypes: null == viewtypes
+          ? _value.viewtypes
+          : viewtypes // ignore: cast_nullable_to_non_nullable
+              as List<ViewType>,
+      endOfPage: null == endOfPage
+          ? _value.endOfPage
+          : endOfPage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$_ViewTypeStateCopyWith<$Res>
       __$$_ViewTypeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ViewType> viewtypes, ViewTypeStatus status});
+  $Res call({ViewTypeStatus status, List<ViewType> viewtypes, bool endOfPage});
 }
 
 /// @nodoc
@@ -84,18 +90,23 @@ class __$$_ViewTypeStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? viewtypes = null,
     Object? status = null,
+    Object? viewtypes = null,
+    Object? endOfPage = null,
   }) {
     return _then(_$_ViewTypeState(
-      viewtypes: null == viewtypes
-          ? _value._viewtypes
-          : viewtypes // ignore: cast_nullable_to_non_nullable
-              as List<ViewType>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ViewTypeStatus,
+      viewtypes: null == viewtypes
+          ? _value._viewtypes
+          : viewtypes // ignore: cast_nullable_to_non_nullable
+              as List<ViewType>,
+      endOfPage: null == endOfPage
+          ? _value.endOfPage
+          : endOfPage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -104,10 +115,14 @@ class __$$_ViewTypeStateCopyWithImpl<$Res>
 
 class _$_ViewTypeState implements _ViewTypeState {
   _$_ViewTypeState(
-      {final List<ViewType> viewtypes = const <ViewType>[],
-      this.status = ViewTypeStatus.initial})
+      {this.status = ViewTypeStatus.initial,
+      final List<ViewType> viewtypes = const <ViewType>[],
+      this.endOfPage = false})
       : _viewtypes = viewtypes;
 
+  @override
+  @JsonKey()
+  final ViewTypeStatus status;
   final List<ViewType> _viewtypes;
   @override
   @JsonKey()
@@ -118,11 +133,11 @@ class _$_ViewTypeState implements _ViewTypeState {
 
   @override
   @JsonKey()
-  final ViewTypeStatus status;
+  final bool endOfPage;
 
   @override
   String toString() {
-    return 'ViewTypeState(viewtypes: $viewtypes, status: $status)';
+    return 'ViewTypeState(status: $status, viewtypes: $viewtypes, endOfPage: $endOfPage)';
   }
 
   @override
@@ -130,14 +145,16 @@ class _$_ViewTypeState implements _ViewTypeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViewTypeState &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other._viewtypes, _viewtypes) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.endOfPage, endOfPage) ||
+                other.endOfPage == endOfPage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_viewtypes), status);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(_viewtypes), endOfPage);
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +165,16 @@ class _$_ViewTypeState implements _ViewTypeState {
 
 abstract class _ViewTypeState implements ViewTypeState {
   factory _ViewTypeState(
-      {final List<ViewType> viewtypes,
-      final ViewTypeStatus status}) = _$_ViewTypeState;
+      {final ViewTypeStatus status,
+      final List<ViewType> viewtypes,
+      final bool endOfPage}) = _$_ViewTypeState;
 
+  @override
+  ViewTypeStatus get status;
   @override
   List<ViewType> get viewtypes;
   @override
-  ViewTypeStatus get status;
+  bool get endOfPage;
   @override
   @JsonKey(ignore: true)
   _$$_ViewTypeStateCopyWith<_$_ViewTypeState> get copyWith =>

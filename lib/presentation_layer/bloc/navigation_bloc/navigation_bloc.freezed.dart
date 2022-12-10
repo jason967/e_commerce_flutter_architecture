@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NavigationState {
-  List<Navigation> get navigationList => throw _privateConstructorUsedError;
   NavigationStatus get status => throw _privateConstructorUsedError;
+  List<Navigation> get navigationList => throw _privateConstructorUsedError;
+  String get naviType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NavigationStateCopyWith<NavigationState> get copyWith =>
@@ -30,7 +31,10 @@ abstract class $NavigationStateCopyWith<$Res> {
           NavigationState value, $Res Function(NavigationState) then) =
       _$NavigationStateCopyWithImpl<$Res, NavigationState>;
   @useResult
-  $Res call({List<Navigation> navigationList, NavigationStatus status});
+  $Res call(
+      {NavigationStatus status,
+      List<Navigation> navigationList,
+      String naviType});
 }
 
 /// @nodoc
@@ -46,18 +50,23 @@ class _$NavigationStateCopyWithImpl<$Res, $Val extends NavigationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? navigationList = null,
     Object? status = null,
+    Object? navigationList = null,
+    Object? naviType = null,
   }) {
     return _then(_value.copyWith(
-      navigationList: null == navigationList
-          ? _value.navigationList
-          : navigationList // ignore: cast_nullable_to_non_nullable
-              as List<Navigation>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as NavigationStatus,
+      navigationList: null == navigationList
+          ? _value.navigationList
+          : navigationList // ignore: cast_nullable_to_non_nullable
+              as List<Navigation>,
+      naviType: null == naviType
+          ? _value.naviType
+          : naviType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -70,7 +79,10 @@ abstract class _$$_NavigationStateCopyWith<$Res>
       __$$_NavigationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Navigation> navigationList, NavigationStatus status});
+  $Res call(
+      {NavigationStatus status,
+      List<Navigation> navigationList,
+      String naviType});
 }
 
 /// @nodoc
@@ -84,18 +96,23 @@ class __$$_NavigationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? navigationList = null,
     Object? status = null,
+    Object? navigationList = null,
+    Object? naviType = null,
   }) {
     return _then(_$_NavigationState(
-      navigationList: null == navigationList
-          ? _value._navigationList
-          : navigationList // ignore: cast_nullable_to_non_nullable
-              as List<Navigation>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as NavigationStatus,
+      navigationList: null == navigationList
+          ? _value._navigationList
+          : navigationList // ignore: cast_nullable_to_non_nullable
+              as List<Navigation>,
+      naviType: null == naviType
+          ? _value.naviType
+          : naviType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -104,10 +121,14 @@ class __$$_NavigationStateCopyWithImpl<$Res>
 
 class _$_NavigationState implements _NavigationState {
   _$_NavigationState(
-      {final List<Navigation> navigationList = const <Navigation>[],
-      this.status = NavigationStatus.initial})
+      {this.status = NavigationStatus.initial,
+      final List<Navigation> navigationList = const <Navigation>[],
+      this.naviType = "market"})
       : _navigationList = navigationList;
 
+  @override
+  @JsonKey()
+  final NavigationStatus status;
   final List<Navigation> _navigationList;
   @override
   @JsonKey()
@@ -118,11 +139,11 @@ class _$_NavigationState implements _NavigationState {
 
   @override
   @JsonKey()
-  final NavigationStatus status;
+  final String naviType;
 
   @override
   String toString() {
-    return 'NavigationState(navigationList: $navigationList, status: $status)';
+    return 'NavigationState(status: $status, navigationList: $navigationList, naviType: $naviType)';
   }
 
   @override
@@ -130,14 +151,16 @@ class _$_NavigationState implements _NavigationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NavigationState &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other._navigationList, _navigationList) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.naviType, naviType) ||
+                other.naviType == naviType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_navigationList), status);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(_navigationList), naviType);
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +171,16 @@ class _$_NavigationState implements _NavigationState {
 
 abstract class _NavigationState implements NavigationState {
   factory _NavigationState(
-      {final List<Navigation> navigationList,
-      final NavigationStatus status}) = _$_NavigationState;
+      {final NavigationStatus status,
+      final List<Navigation> navigationList,
+      final String naviType}) = _$_NavigationState;
 
+  @override
+  NavigationStatus get status;
   @override
   List<Navigation> get navigationList;
   @override
-  NavigationStatus get status;
+  String get naviType;
   @override
   @JsonKey(ignore: true)
   _$$_NavigationStateCopyWith<_$_NavigationState> get copyWith =>
