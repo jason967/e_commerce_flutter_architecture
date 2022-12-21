@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../view/counter/counter_page.dart';
+import '../../views/counter/counter_page.dart';
 
 part 'bottom_navi_event.dart';
 part 'bottom_navi_state.dart';

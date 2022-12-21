@@ -13,7 +13,8 @@ class _RestClient implements RestClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://localhost:8080';
+    baseUrl ??=
+        'http://ec2-3-114-157-245.ap-northeast-1.compute.amazonaws.com:8080';
   }
 
   final Dio _dio;
@@ -21,32 +22,32 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<List<NavigationDto>> getNavigationList(naviType) async {
+  Future<List<MainTabDto>> getMainTabList(storetype) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'type': naviType};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<NavigationDto>>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<MainTabDto>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/api/navigation',
+              '/api/main-tab/${storetype}',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => NavigationDto.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => MainTabDto.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<List<ViewTypeDto>> getViewTypeList(
+  Future<List<ViewDto>> getviewList(
     naviId,
     page,
   ) async {
@@ -54,21 +55,21 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<ViewTypeDto>>(Options(
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<ViewDto>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/api/viewtype/${naviId}',
+              '/api/view/${naviId}',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => ViewTypeDto.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => ViewDto.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
